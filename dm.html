@@ -34,19 +34,19 @@
         alert('Masukkan jumlah diamond custom!');
         return;
       }
-      diamond = `${custom} diamond`;
+      diamond = `${custom}`;
     } else {
       diamond = diamondOption.value;
     }
 
-    const message = `Id(${id})-Server(${server})-JumlahDiamond(${diamond})`;
+    const message = `ID:${id}\nServer:${server}\nJumlahDiamond:${diamond}`;
     const confirmMsg = `Kirim data berikut ke WhatsApp?\n\nID: ${id}\nServer: ${server}\nJumlah Diamond: ${diamond}`;
 
     if (confirm(confirmMsg)) {
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<svg class="animate-spin h-5 w-5 mr-2 inline" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 000 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z" /></svg> Mengalihkan...';
 
-      const phone = '+6285156863975';
+      const phone = '6285000111000';
       setTimeout(() => {
         window.location.href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
       }, 500);
