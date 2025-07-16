@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Top Up Diamond ML</title>
+    <link rel="icon" href="logoku.png" />
+    <script>
+      function toggleCustomDiamondInput() {
+        const customInput = document.getElementById("customDiamondInput");
+        const customRadio = document.getElementById("diamond4");
+        customInput.style.display = customRadio.checked ? "block" : "none";
+      }function handleSubmit(event) {
+    event.preventDefault();
+    const id = document.querySelector('input[name="id"]').value.trim();
+    const server = document.querySelector('input[name="server"]').value.trim();
+    const submitBtn = document.getElementById("submitBtn");
+
+    if (!/^\d+$/.test(id)) {
+      alert('ID hanya boleh berisi angka!');
+      return;
+    }
+
+    if (!/^\d+$/.test(server)) {
+      alert('Server hanya boleh berisi angka!');
+      return;
+    }
+
+    const diamondOption = document.querySelector('input[name="diamond"]:checked');
+
+    let diamond = '';
+    if (diamondOption.value === 'custom') {
+      const custom = document.querySelector('input[name="custom_diamond"]').value.trim();
+      if (!custom) {
+        alert('Masukkan jumlah diamond custom!');
+        return;
+      }
+      diamond = `${custom} diamond`;
+    } else {
+      diamond = diamondOption.value;
+    }
+
+    const message = `Id(${id})-Server(${server})-JumlahDiamond(${diamond})`;
+    const confirmMsg = `Kirim data berikut ke WhatsApp?\n\nID: ${id}\nServer: ${server}\nJumlah Diamond: ${diamond}`;
+
+    if (confirm(confirmMsg)) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<svg class="animate-spin h-5 w-5 mr-2 inline" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 000 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z" /></svg> Mengalihkan...';
+
+      const phone = '+6285156863975';
+      setTimeout(() => {
+        window.location.href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      }, 500);
+    }
+  }
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+
+  </head>
+  <body class="bg-gradient-to-br from-indigo-100 to-purple-200 min-h-screen p-6">
+    <div class="max-w-xl mx-auto bg-white rounded-2xl shadow-xl p-6 space-y-6">
+      <div class="flex justify-center">
+        <img src="logoku.png" alt="Logo" class="w-16 h-16" />
+      </div>
+      <h1 class="text-2xl font-bold text-center text-indigo-800">Top Up Diamond ML</h1><form onsubmit="handleSubmit(event)" class="space-y-4">
+    <div>
+      <label class="block font-medium text-gray-700">ID</label>
+      <input type="text" name="id" required pattern="\d+" inputmode="numeric" class="w-full mt-1 p-2 border rounded-md" />
+    </div>
+
+    <div>
+      <label class="block font-medium text-gray-700">Server</label>
+      <input type="text" name="server" required pattern="\d+" inputmode="numeric" class="w-full mt-1 p-2 border rounded-md" />
+    </div>
+
+    <div>
+      <label class="block font-medium text-gray-700">Pilih Diamond</label>
+      <div class="space-y-2 mt-2">
+        <label class="flex items-center gap-2">
+          <input type="radio" name="diamond" value="wdp 1x fast" onchange="toggleCustomDiamondInput()" required />
+          wdp 1x fast - Rp22.000
+        </label>
+
+        <label class="flex items-center gap-2">
+          <input type="radio" name="diamond" value="wdp 2x fast" onchange="toggleCustomDiamondInput()" />
+          wdp 2x fast - Rp48.000
+        </label>
+
+        <label class="flex items-center gap-2">
+          <input type="radio" name="diamond" value="wdp 3x fast" onchange="toggleCustomDiamondInput()" />
+          wdp 3x fast - Rp75.000
+        </label>
+
+        <label class="flex items-start gap-2">
+          <input type="radio" id="diamond4" name="diamond" value="custom" onchange="toggleCustomDiamondInput()" />
+          <span>
+            Masukkan banyak diamond (custom)
+            <div id="customDiamondInput" style="display:none;">
+              <input type="number" name="custom_diamond" min="1" placeholder="Masukkan jumlah diamond"
+                class="mt-1 p-2 border rounded-md w-full" />
+            </div>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <button id="submitBtn" type="submit"
+      class="w-full bg-indigo-600 text-white py-2 rounded-md font-semibold hover:bg-indigo-700 transition">
+      Kirim ke WhatsApp
+    </button>
+
+    <p class="text-sm text-center text-gray-500 mt-4">
+      *Harga dapat berubah sewaktu-waktu tanpa pemberitahuan terlebih dahulu.
+    </p>
+  </form>
+</div>
+
+  </body>
+</html>
