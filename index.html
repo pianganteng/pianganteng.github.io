@@ -34,6 +34,16 @@
           return;
         }
 
+        if (id.length > 12) {
+    alert('ID maksimal 12 digit!');
+    return;
+  }
+
+  if (server.length > 4) {
+    alert('Server maksimal 4 digit!');
+    return;
+  }
+
         const diamondOption = document.querySelector('input[name="diamond"]:checked');
 
         let diamond = '';
