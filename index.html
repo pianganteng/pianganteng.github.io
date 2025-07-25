@@ -39,7 +39,7 @@
       diamond = diamondOption.value;
     }
 
-    const message = `ID:${id}\nServer:${server}\nJumlahDiamond:${diamond}`;
+    const message = `ID:${id}\nServer:${server}\nItem:${diamond}`;
     const confirmMsg = `Kirim data berikut ke WhatsApp?\n\nID: ${id}\nServer: ${server}\nJumlah Diamond: ${diamond}`;
 
     if (confirm(confirmMsg)) {
@@ -103,10 +103,24 @@
         <label class="flex items-center gap-2">
           <input type="radio" name="diamond" value="Jasa Gift Emote Shop" onchange="toggleCustomDiamondInput()" />
           Jasa Gift Emote Shop
+          <span>
+            Masukkan harga emote 
+            <div id="customDiamondInput" style="display:none;">
+              <input type="number" name="custom_diamond" min="1" placeholder="Masukkan jumlah diamond"
+                class="mt-1 p-2 border rounded-md w-full" />
+            </div>
+          </span>
         </label>
         <label class="flex items-center gap-2">
           <input type="radio" name="diamond" value="SL CARD Basic/Prem" onchange="toggleCustomDiamondInput()" />
           SL CARD STOCK:Basic 2/Prem 0. Tulis 1 Jika Basic, Tulis 2 Jika Prem
+          <span>
+            Masukkan banyak diamond (custom)
+            <div id="customDiamondInput" style="display:none;">
+              <input type="number" name="custom_diamond" min="1" max="2" placeholder="Masukkan angka 1/2"
+                class="mt-1 p-2 border rounded-md w-full" />
+            </div>
+          </span>
         </label>
       </div>
     </div>
